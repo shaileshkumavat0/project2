@@ -1,0 +1,138 @@
+/* =========================================================
+   Startup Idea Collaboration Portal - Main Stylesheet
+   ========================================================= */
+
+:root {
+  --brand: #6d28d9;
+  --brand-dark: #5b21b6;
+  --brand-light: #ede9fe;
+  --accent: #06b6d4;
+  --radius: 14px;
+  --sidebar-width: 260px;
+}
+
+[data-bs-theme="light"] {
+  --bs-body-bg: #f6f7fb;
+  --card-bg: #ffffff;
+  --border-soft: #eef0f5;
+}
+
+[data-bs-theme="dark"] {
+  --bs-body-bg: #0f1117;
+  --card-bg: #171923;
+  --border-soft: #262a38;
+}
+
+body {
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  background: var(--bs-body-bg);
+}
+
+a { text-decoration: none; }
+
+/* ---------- Navbar ---------- */
+.app-navbar {
+  background: var(--card-bg);
+  border-bottom: 1px solid var(--border-soft);
+  padding: .6rem 0;
+}
+.brand-badge {
+  width: 38px; height: 38px; border-radius: 10px;
+  background: linear-gradient(135deg, var(--brand), var(--accent));
+  color: #fff; display: flex; align-items: center; justify-content: center;
+  font-size: 1.1rem;
+}
+.search-form { width: 380px; }
+.btn-icon {
+  width: 40px; height: 40px; border-radius: 50%;
+  display: inline-flex; align-items: center; justify-content: center;
+  background: transparent; border: none; color: inherit;
+}
+.btn-icon:hover { background: var(--brand-light); }
+.avatar-sm { width: 34px; height: 34px; border-radius: 50%; object-fit: cover; }
+.avatar-md { width: 56px; height: 56px; border-radius: 50%; object-fit: cover; }
+.avatar-lg { width: 110px; height: 110px; border-radius: 50%; object-fit: cover; border: 4px solid var(--card-bg); }
+
+/* ---------- Layout ---------- */
+.app-body { display: flex; min-height: calc(100vh - 64px); }
+.app-sidebar {
+  width: var(--sidebar-width);
+  background: var(--card-bg);
+  border-right: 1px solid var(--border-soft);
+  flex-shrink: 0;
+  position: sticky;
+  top: 64px;
+  height: calc(100vh - 64px);
+  overflow-y: auto;
+}
+.app-sidebar .nav-link { color: var(--bs-body-color); border-radius: 10px; padding: .55rem .9rem; font-weight: 500; }
+.app-sidebar .nav-link.active, .app-sidebar .nav-link:hover { background: var(--brand-light); color: var(--brand-dark); }
+[data-bs-theme="dark"] .app-sidebar .nav-link.active, [data-bs-theme="dark"] .app-sidebar .nav-link:hover { background: #241a3a; color: #c4b5fd; }
+.app-main { flex: 1; padding: 1.5rem; min-width: 0; }
+.sidebar-backdrop { display: none; }
+
+@media (max-width: 991.98px) {
+  .app-sidebar {
+    position: fixed; left: -280px; top: 0; height: 100vh; z-index: 1050;
+    transition: left .25s ease; padding-top: 70px;
+  }
+  .app-sidebar.show { left: 0; box-shadow: 0 0 30px rgba(0,0,0,.2); }
+  .sidebar-backdrop.show {
+    display: block; position: fixed; inset: 0; background: rgba(0,0,0,.4); z-index: 1040;
+  }
+}
+
+/* ---------- Cards ---------- */
+.card { background: var(--card-bg); border: 1px solid var(--border-soft); border-radius: var(--radius); }
+.stat-card { border-radius: var(--radius); padding: 1.25rem; color: #fff; }
+.stat-card.c1 { background: linear-gradient(135deg,#6d28d9,#8b5cf6); }
+.stat-card.c2 { background: linear-gradient(135deg,#0891b2,#06b6d4); }
+.stat-card.c3 { background: linear-gradient(135deg,#ea580c,#f59e0b); }
+.stat-card.c4 { background: linear-gradient(135deg,#16a34a,#22c55e); }
+
+.idea-card { transition: transform .15s ease, box-shadow .15s ease; overflow: hidden; }
+.idea-card:hover { transform: translateY(-3px); box-shadow: 0 12px 24px rgba(0,0,0,.08); }
+.idea-card img.idea-thumb, .idea-thumb-placeholder { height: 170px; object-fit: cover; width: 100%; background: var(--brand-light); }
+.badge-stage { background: var(--brand-light); color: var(--brand-dark); font-weight: 600; }
+[data-bs-theme="dark"] .badge-stage { background: #241a3a; color: #c4b5fd; }
+
+.skill-chip {
+  display: inline-block; background: var(--border-soft); border-radius: 20px;
+  padding: .2rem .7rem; font-size: .78rem; margin: 0 .25rem .25rem 0;
+}
+
+/* ---------- Buttons ---------- */
+.btn-primary { background: var(--brand); border-color: var(--brand); }
+.btn-primary:hover { background: var(--brand-dark); border-color: var(--brand-dark); }
+.btn-outline-primary { color: var(--brand); border-color: var(--brand); }
+.btn-outline-primary:hover { background: var(--brand); border-color: var(--brand); }
+.like-btn.liked, .bookmark-btn.saved { color: #e11d48; }
+.bookmark-btn.saved { color: var(--brand); }
+
+/* ---------- Landing Page ---------- */
+.hero-section {
+  background: radial-gradient(circle at top right, #ede9fe, transparent 60%), var(--bs-body-bg);
+  padding: 5rem 0 4rem;
+}
+.hero-title { font-weight: 800; font-size: 3rem; line-height: 1.15; }
+.gradient-text { background: linear-gradient(135deg, var(--brand), var(--accent)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.feature-icon {
+  width: 54px; height: 54px; border-radius: 14px;
+  background: var(--brand-light); color: var(--brand); display: flex;
+  align-items: center; justify-content: center; font-size: 1.4rem;
+}
+
+/* ---------- Auth Pages ---------- */
+.auth-wrapper { min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 2rem 1rem; }
+.auth-card { max-width: 460px; width: 100%; border-radius: var(--radius); }
+
+/* ---------- Comments ---------- */
+.comment-thread { border-left: 2px solid var(--border-soft); padding-left: 1rem; margin-left: 1.2rem; }
+
+/* ---------- Notifications ---------- */
+.notif-item.unread { background: var(--brand-light); }
+[data-bs-theme="dark"] .notif-item.unread { background: #1c1730; }
+
+/* ---------- Misc ---------- */
+.form-control, .form-select { border-radius: 10px; }
+.rounded-14 { border-radius: var(--radius); }
